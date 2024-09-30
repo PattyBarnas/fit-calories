@@ -2,39 +2,52 @@
 
 import React, { useState } from "react";
 
+interface formDataTypes {
+  age: number;
+  weight: number;
+  gender: string;
+  height: number;
+  targetWeight: number;
+}
+
 export default function Page() {
   const [step, setStep] = useState<number>(0);
-  const [formData, setFormData] = useState({
-    age: "",
-    weight: "",
+
+  const [formData, setFormData] = useState<formDataTypes>({
+    age: 0,
+    weight: 0,
     gender: "",
-    height: "",
+    height: 0,
+    targetWeight: 0,
   });
   const [error, setError] = useState<string | null>(null);
 
+  // const bmi: number = (formData.weight * 703) / formData.height;
+
   const handleNextStep = (): void => {
-    if (step === 0 && formData.age.trim().length === 0) {
-      setError("Please enter age");
+    if (step === 0 && formData.age === 0) {
+      setError("Please enter age > 0");
       return;
     }
-    if (step === 1 && formData.weight.trim().length === 0) {
-      setError("Please enter weight");
+    if (step === 1 && formData.weight === 0) {
+      setError("Please enter weight > 0");
       return;
     }
     if (step === 2 && formData.gender.trim().length === 0) {
-      setError("Please select gender");
+      setError("Please select gender > 0");
       return;
     }
-    if (step === 3 && formData.height.trim().length === 0) {
-      setError("Please enter weight");
+    if (step === 3 && formData.height === 0) {
+      setError("Please enter weight > 0");
       return;
     }
+
     setError(null);
+
     setStep((current) => current + 1);
   };
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    // e.preventDefault();
     const { id, value, name, type } = e.target;
     console.log(value);
 
@@ -43,8 +56,11 @@ export default function Page() {
       [type === "radio" ? name : id]: value,
     }));
   };
+  // 1187.4 + 914.4 -190.4
 
-  const handleFormSubmit = () => {};
+  const handleFormSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   return (
     <form onSubmit={handleFormSubmit}>
@@ -89,7 +105,7 @@ export default function Page() {
                   onChange={handleFormChange}
                   required
                 />
-                {error ? error : null}
+                {/* {error ? error : null} */}
               </div>
               <div>
                 <label htmlFor="male">Male</label>
