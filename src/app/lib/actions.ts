@@ -2,10 +2,10 @@
 import { z } from "zod";
 
 const FormSchema = z.object({
-  foodId: z.number(),
+  foodId: z.string(),
   type: z.string(),
-  amount: z.number(),
-  calories: z.number(),
+  amount: z.string(),
+  calories: z.string(),
   date: z.string(),
 });
 
@@ -39,7 +39,7 @@ export async function createTodaysMeal(prevState: State, formData: FormData) {
   }
 
   const { foodId, type, amount, calories, date } = validateFields.data;
-  const date = new Date().toISOString().split("T")[0];
+  //   const date = new Date().toISOString().split("T")[0];
 
   //   CONNECT TO DATA BASE THEN INSERT INFO
 }
