@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
+import styles from "@/app/ui/dashboard/nav.module.css";
+
 // ...
 const links = [
   { name: "Home", href: "/dashboard" },
@@ -30,8 +32,9 @@ export default function NavLinks() {
               }
             )}
           >
-            {/* <LinkIcon className="w-6" /> */}
-            <p className="hidden md:block">{link.name}</p>
+            <div className={styles.links}>
+              <p className="hidden md:block">{link.name}</p>
+            </div>
           </Link>
         );
       })}

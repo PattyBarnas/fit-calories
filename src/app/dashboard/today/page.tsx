@@ -1,3 +1,14 @@
+"use client";
+
 export default function Today() {
-  return <p>Todays Tabs</p>;
+  return (
+    <form>
+      <div>
+        <div>
+          <label htmlFor="foodType"></label>
+          <input type="text" />
+        </div>
+      </div>
+    </form>
+  );
 }
