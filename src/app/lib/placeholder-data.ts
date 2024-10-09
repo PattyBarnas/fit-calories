@@ -1,4 +1,4 @@
-const calories = [
+const foods = [
   {
     id: 1,
     name: "Grilled Chicken Breast",
